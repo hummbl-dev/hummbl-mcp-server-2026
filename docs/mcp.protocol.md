@@ -1,6 +1,7 @@
 # MCP Protocol Specification
 
 ## Versioning
+
 - **Spec Version:** 2026.x (explicit pin required before first release)
 - **Transport:** Agnostic (supports stdio, HTTP, WebSocket)
 - **Error Taxonomy:** Explicit, versioned
@@ -42,6 +43,7 @@
 - **NOT_IMPLEMENTED**: Capability not available
 
 All errors MUST include:
+
 - `code` (string, from above)
 - `message` (human-readable)
 - `details` (optional, for debugging)
@@ -49,6 +51,7 @@ All errors MUST include:
 ---
 
 ## Version Pinning
+
 - Protocol and schema versions are pinned in handshake
 - Breaking changes require explicit version bump
 - Clients and servers MUST reject mismatched versions
@@ -56,6 +59,7 @@ All errors MUST include:
 ---
 
 ## Transport Notes
+
 - HTTP: Use standard REST verbs, chunked transfer for streaming
 - WebSocket: Each message is a protocol frame
 - stdio: Line-delimited JSON
@@ -63,12 +67,14 @@ All errors MUST include:
 ---
 
 ## Extensibility
+
 - New error codes and message types require version bump
 - Backward compatibility is not guaranteed pre-1.0.0
 
 ---
 
 ## Non-Goals
+
 - No UI or dashboard
 - No persistence or agent memory
 - No multi-tenant support
@@ -76,5 +82,6 @@ All errors MUST include:
 ---
 
 ## Change Control
+
 - This document is authoritative for protocol behavior
 - Changes require versioned justification and main branch commit

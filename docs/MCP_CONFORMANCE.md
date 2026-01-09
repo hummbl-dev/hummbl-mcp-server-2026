@@ -1,6 +1,7 @@
 # MCP_CONFORMANCE.md
 
 ## Status
+
 **Authoritative for this repository.**  
 All MCP-related behavior MUST conform to this document unless explicitly versioned otherwise.
 
