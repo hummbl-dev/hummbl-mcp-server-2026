@@ -24,6 +24,7 @@ addFormats(ajv);
  * Load canonical tool schema (single source of truth)
  */
 const TOOL_SCHEMA_PATH = resolve(
+/* global process */
   process.cwd(),
   "tools/schema/tool.schema.json"
 );

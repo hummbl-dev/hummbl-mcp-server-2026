@@ -1,6 +1,7 @@
 export type LogLevel = "info" | "error";
 
 function base(level: LogLevel, payload: Record<string, unknown>) {
+/* global process */
   process.stdout.write(
     JSON.stringify({
       ts: new Date().toISOString(),

@@ -1,4 +1,8 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
+// Extend Express Request to include requestId
+interface RequestWithId extends Request {
+  requestId?: string;
+}
 import { randomUUID } from "node:crypto";
 import { MCPTool } from "./types/tool";
 import { MCPResponse, MCPSuccessResponse } from "./types/response";
@@ -16,15 +20,15 @@ export function createServer() {
   const app = express();
   app.use(express.json());
 
-  app.use((req, _res, next) => {
-    (req as any).requestId = randomUUID();
+  app.use((req: RequestWithId, _res: Response, next: NextFunction) => {
+    req.requestId = randomUUID();
     next();
   });
 
-  app.get("/mcp/handshake", (req, res) => {
+  app.get("/mcp/handshake", (req: RequestWithId, res: Response) => {
     log(req, "handshake");
     const response: MCPSuccessResponse = {
-      id: (req as any).requestId,
+      id: req.requestId!,
       protocol_version: PROTOCOL_VERSION,
       ok: true,
       result: {
@@ -35,10 +39,10 @@ export function createServer() {
     res.json(response);
   });
 
-  app.get("/mcp/tools/list", (req, res) => {
+  app.get("/mcp/tools/list", (req: RequestWithId, res: Response) => {
     log(req, "tools.list");
     const response: MCPSuccessResponse<MCPTool[]> = {
-      id: (req as any).requestId,
+      id: req.requestId!,
       protocol_version: PROTOCOL_VERSION,
       ok: true,
       result: Array.from(tools.values())
@@ -46,7 +50,7 @@ export function createServer() {
     res.json(response);
   });
 
-  app.use((err: unknown, req: any, res: any, _next: any) => {
+  app.use((err: unknown, req: RequestWithId, res: Response, _next: NextFunction) => {
     const mcpError =
       err instanceof MCPError
         ? err
@@ -87,7 +91,7 @@ export function registerTool(tool: MCPTool) {
   tools.set(tool.name, tool);
 }
 
-function log(req: any, event: string) {
+function log(req: RequestWithId, event: string) {
   logger.info({
     event,
     method: req.method,
