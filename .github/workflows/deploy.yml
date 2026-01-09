@@ -22,7 +22,7 @@ jobs:
       - name: Markdown lint
         run: npx markdownlint "**/*.md"
       - name: Schema compile (fail fast)
-        run: npx ts-node --loader ts-node/esm ./src/validation/ajv-cli.ts
+        run: npx ts-node ./src/validation/ajv-cli.ts
       - name: Run tests
         run: npx jest || echo 'No tests run'
       - name: Deploy to server (stub)
