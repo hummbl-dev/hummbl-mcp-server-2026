@@ -1,3 +1,5 @@
+import { MCPErrorCode } from "./errors";
+
 export interface MCPBaseResponse {
   id: string;
   protocol_version: string;
