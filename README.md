@@ -37,12 +37,6 @@ pip install -r requirements.txt
 
 # Run the server (adjust module/app if your entrypoint differs)
 uvicorn main:app --reload
-
----
-
-## Repository Structure
-
-```text
 auth/       # OAuth2.1 + PKCE + OIDC endpoints
 transport/  # Streaming transport logic
 tools/      # Tool definitions and executors
