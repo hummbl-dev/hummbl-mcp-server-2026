@@ -1,3 +1,6 @@
+  app.get("/health", (_req: Request, res: Response) => {
+    res.json({ status: "ok" });
+  });
 import express, { Request, Response, NextFunction } from "express";
 // Extend Express Request to include requestId
 interface RequestWithId extends Request {
