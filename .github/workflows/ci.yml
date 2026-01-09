@@ -17,15 +17,14 @@ jobs:
         with:
           node-version: '20.x'
       - name: Install dependencies
-        run: |
-          npm install -g typescript eslint markdownlint-cli vitest supertest ajv ajv-formats
+        run: npm ci
       - name: Type check
-        run: tsc --noEmit
+        run: npx tsc --noEmit
       - name: Lint
-        run: eslint src/**/*.ts tests/**/*.ts
+        run: npx eslint src/**/*.ts tests/**/*.ts
       - name: Markdown lint
-        run: markdownlint "**/*.md"
+        run: npx markdownlint "**/*.md"
       - name: Schema compile (fail fast)
         run: node -e "require('./src/validation/ajv').assertSchemaIntegrity()"
       - name: Run tests
-        run: vitest run || npx jest || echo 'No tests run'
+        run: npx jest || echo 'No tests run'
