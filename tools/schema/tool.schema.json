@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Tool Schema",
+  "type": "object",
+  "required": ["name", "description", "inputs", "outputs", "scopes"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique tool identifier."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable summary of tool purpose."
+    },
+    "inputs": {
+      "type": "object",
+      "description": "JSON schema for tool input parameters."
+    },
+    "outputs": {
+      "type": "object",
+      "description": "JSON schema for tool output."
+    },
+    "scopes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "OAuth2 scopes required to invoke this tool."
+    },
+    "readOnly": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if tool is read-only (no side effects)."
+    },
+    "sideEffecting": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if tool has side effects but is not destructive."
+    },
+    "destructive": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if tool is destructive (irreversible changes)."
+    },
+    "version": {
+      "type": "string",
+      "description": "Tool contract version (semver)."
+    }
+  },
+  "additionalProperties": false
+}
