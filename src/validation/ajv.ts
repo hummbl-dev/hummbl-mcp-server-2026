@@ -1,16 +1,3 @@
-// CLI entrypoint for schema integrity check
-if (require.main === module && process.argv.includes('--check-schema')) {
-  try {
-    assertSchemaIntegrity();
-    // eslint-disable-next-line no-console
-    console.log('Schema integrity check passed.');
-    process.exit(0);
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('Schema integrity check failed:', err);
-    process.exit(1);
-  }
-}
 import Ajv, { ErrorObject, ValidateFunction } from "ajv";
 import addFormats from "ajv-formats";
 import { readFileSync } from "node:fs";
