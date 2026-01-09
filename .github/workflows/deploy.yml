@@ -1,3 +1,5 @@
+      - name: Build
+        run: npx tsc
 name: Deploy
 
 on:
@@ -22,7 +24,7 @@ jobs:
       - name: Markdown lint
         run: npx markdownlint "**/*.md"
       - name: Schema compile (fail fast)
-        run: npx ts-node ./src/validation/ajv-cli.ts
+        run: node ./dist/src/validation/ajv-cli.js
       - name: Run tests
         run: npx jest || echo 'No tests run'
       - name: Deploy to server (stub)

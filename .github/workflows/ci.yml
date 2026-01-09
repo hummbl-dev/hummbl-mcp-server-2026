@@ -1,3 +1,5 @@
+      - name: Build
+        run: npx tsc
 
 name: CI
 
@@ -25,6 +27,6 @@ jobs:
       - name: Markdown lint
         run: npx markdownlint "**/*.md" --ignore "node_modules"
       - name: Schema compile (fail fast)
-        run: npx ts-node ./src/validation/ajv-cli.ts
+        run: node ./dist/src/validation/ajv-cli.js
       - name: Run tests
         run: npx jest || echo 'No tests run'
