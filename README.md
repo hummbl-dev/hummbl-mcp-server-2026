@@ -37,3 +37,30 @@ pip install -r requirements.txt
 
 # Run the server (adjust module/app if your entrypoint differs)
 uvicorn main:app --reload
+
+## Endpoints
+
+- `GET /health` – Liveness check.
+- `POST /mcp/tools/{tool_name}` – Stub endpoint for MCP tool execution.
+
+## Configuration
+
+- `OIDC_ISSUER` – OIDC issuer URL.
+- `OIDC_CLIENT_ID` – OAuth2.1 client ID.
+- `OIDC_CLIENT_SECRET` – Client secret or token (if applicable).
+---
+
+## Endpoints
+
+- `GET /health` — Health check endpoint, returns `{ "status": "ok" }` if server is running.
+- `POST /mcp/tools/{tool_name}` — Stub endpoint for MCP tool execution (returns not implemented).
+
+## Configuration
+
+The server requires OAuth2.1/OIDC configuration for authentication and discovery endpoints. Set the following environment variables as needed:
+
+- `OIDC_ISSUER` — OIDC issuer URL
+- `OIDC_CLIENT_ID` — OAuth2.1 client ID
+- `OIDC_CLIENT_SECRET` — OAuth2.1 client secret
+
+Update these as you implement authentication and OIDC features.
