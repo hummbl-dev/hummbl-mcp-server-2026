@@ -64,13 +64,48 @@ uvicorn main:app --reload
 
 ## Configuration
 
+
 Set the following environment variables for OAuth2.1/OIDC authentication and discovery:
 
 - `OIDC_ISSUER` — OIDC issuer URL
 - `OIDC_CLIENT_ID` — OAuth2.1 client ID
 - `OIDC_CLIENT_SECRET` — OAuth2.1 client secret
 
-Update these as you implement authentication and OIDC features.
+You can place these in a `.env` file at the project root:
+
+```env
+OIDC_ISSUER=https://example-issuer.com/
+OIDC_CLIENT_ID=your-client-id
+OIDC_CLIENT_SECRET=your-client-secret
+```
+
+
+### Example: OAuth2.1 Authorization Flow
+
+1. Direct the user to the authorization URL:
+
+	```
+	https://your-oidc-issuer.com/authorize?response_type=code&client_id=your-client-id&redirect_uri=https://your-app/callback&scope=openid%20profile%20email&code_challenge=...&code_challenge_method=S256
+	```
+
+2. After user login and consent, exchange the code for a token:
+
+	```bash
+	curl -X POST https://your-oidc-issuer.com/token \
+	  -d 'grant_type=authorization_code' \
+	  -d 'code=AUTH_CODE_FROM_STEP_1' \
+	  -d 'redirect_uri=https://your-app/callback' \
+	  -d 'client_id=your-client-id' \
+	  -d 'code_verifier=YOUR_CODE_VERIFIER'
+	```
+
+3. Use the returned access token to call MCP endpoints:
+
+	```bash
+	curl -H "Authorization: Bearer ACCESS_TOKEN" https://your-mcp-server/mcp/tools/list
+	```
+
+See your OIDC provider’s documentation for full details on PKCE and supported parameters.
 
 ---
 

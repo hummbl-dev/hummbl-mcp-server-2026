@@ -1,3 +1,14 @@
+## Environment Configuration
+
+OAuth2.1/OIDC configuration is provided via environment variables. Example .env file:
+
+```env
+OIDC_ISSUER=https://example-issuer.com/
+OIDC_CLIENT_ID=your-client-id
+OIDC_CLIENT_SECRET=your-client-secret
+```
+
+These must be set for conformance with authentication and OIDC discovery requirements.
 # MCP_CONFORMANCE.md
 
 ## Status

@@ -1,3 +1,14 @@
+## Environment Configuration
+
+The server expects OAuth2.1/OIDC configuration via environment variables. Example .env file:
+
+```env
+OIDC_ISSUER=https://example-issuer.com/
+OIDC_CLIENT_ID=your-client-id
+OIDC_CLIENT_SECRET=your-client-secret
+```
+
+These must be set for authentication and OIDC discovery endpoints to function.
 # MCP Protocol Specification
 
 ## Versioning
