@@ -23,7 +23,7 @@ jobs:
       - name: Lint
         run: npx eslint src/**/*.ts tests/**/*.ts
       - name: Markdown lint
-        run: npx markdownlint "**/*.md" "!node_modules"
+        run: npx markdownlint "**/*.md" --ignore "node_modules"
       - name: Schema compile (fail fast)
         run: node -e "require('./src/validation/ajv').assertSchemaIntegrity()"
       - name: Run tests
