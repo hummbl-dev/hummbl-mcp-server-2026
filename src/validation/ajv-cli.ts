@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* eslint-env node */
+/* global console, process */
 /* eslint-disable no-console */
 import { assertSchemaIntegrity } from './ajv.js';
 
